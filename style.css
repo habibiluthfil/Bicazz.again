@@ -18,12 +18,12 @@ body {
 }
 
 .theme-light {
-    background: linear-gradient(to bottom, var(--bg-top-light), var(--bg-bottom-light));
+    background: linear-gradient(to bottom, var(--bg-top-light), var(--bg-bottom-light)) !important;
     color: #444;
 }
 
 .theme-dark {
-    background: linear-gradient(to bottom, var(--bg-top-dark), var(--bg-bottom-dark));
+    background: linear-gradient(to bottom, var(--bg-top-dark), var(--bg-bottom-dark)) !important;
     color: #fff;
 }
 
