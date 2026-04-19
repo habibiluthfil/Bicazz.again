@@ -6,7 +6,181 @@
     <title>Bicazz - The Incredibles Financial Tracker</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        main {
+            --bg-top-light: #FAF7EB;
+            --bg-bottom-light: #EB975E;
+            --bg-top-dark: #AB4F41;
+            --bg-bottom-dark: #5D1F1E;
+            --soft-rounded: 2rem;
+        }
+
+        body {
+            transition: background 0.5s ease, color 0.3s ease;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .theme-light {
+            background: linear-gradient(to bottom, var(--bg-top-light), var(--bg-bottom-light));
+            color: #444;
+        }
+
+        .theme-dark {
+            background: linear-gradient(to bottom, var(--bg-top-dark), var(--bg-bottom-dark));
+            color: #fff;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: var(--soft-rounded);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-dark .glass-card {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Futuristic & Glowing Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #f87171, #ef4444);
+            color: white;
+            border-radius: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+        }
+
+        /* Swipe Card Concept */
+        .swipe-viewport {
+            overflow: hidden;
+            width: 100%;
+            border-radius: var(--soft-rounded);
+        }
+
+        .swipe-track {
+            display: flex;
+            width: 300%; /* 3 sections */
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .swipe-item {
+            width: 33.333%;
+            padding: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Modern Tabs */
+        .futuristic-tab {
+            position: relative;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2rem;
+            padding: 1rem 2rem;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+            color: inherit;
+            border: 1px solid transparent;
+        }
+
+        .futuristic-tab.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #ef4444;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .theme-dark .futuristic-tab.active {
+            background: #2a0a0a;
+            color: #ff8a8a;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+            border: 1px solid rgba(239, 68, 68, 0.8);
+        }
+
+        .type-toggle {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+            border-radius: 2rem;
+            display: inline-flex;
+            gap: 0.5rem;
+        }
+
+        .type-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .type-btn.active {
+            background: linear-gradient(135deg, #f87171, #ef4444);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden-section { display: none; }
+
+        /* Official Logo Styling */
+        .official-logo {
+            background: linear-gradient(135deg, #ff0000, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Arial Black', Impact, sans-serif;
+            font-style: italic;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, #ff0000, #990000);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(239, 68, 68, 0.5);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(239, 68, 68, 0.8);
+        }
+    </style>
 </head>
 <body class="theme-light" id="app-body">
 
@@ -49,7 +223,7 @@
                             Makna Logo Bicazz
                         </h3>
                         <p class="opacity-90 leading-relaxed text-sm">
-                            Logo <strong>Bicazz</strong> merepresentasikan identitas perusahaan sebagai platform keuangan yang modern, inovatif, dan terpercaya. Inisial “BZ” menegaskan nama Bicazz secara kuat dan mudah dikenali, sekaligus mencerminkan profesionalisme. Warna oranye melambangkan semangat dan kreativitas, sedangkan coklat kemerahan menunjukkan stabilitas dan kepercayaan dalam pengelolaan keuangan. Elemen bintang emas melambangkan harapan dan pencapaian, menggambarkan peran Bicazz dalam membantu pengguna meraih tujuan finansial. Tampilan gradasi memberikan kesan futuristik dan berbasis teknologi, sejalan dengan konsep aplikasi digital. Sementara itu, tulisan “ESTD 2026” mencerminkan awal berdirinya sebagai simbol komitmen untuk terus berkembang.Logo Bicazz merepresentasikan identitas perusahaan sebagai platform keuangan yang modern, inovatif, dan terpercaya. Inisial “BZ” menegaskan nama Bicazz secara kuat dan mudah dikenali, sekaligus mencerminkan profesionalisme. Warna oranye melambangkan semangat dan kreativitas, sedangkan coklat kemerahan menunjukkan stabilitas dan kepercayaan dalam pengelolaan keuangan. Elemen bintang emas melambangkan harapan dan pencapaian, menggambarkan peran Bicazz dalam membantu pengguna meraih tujuan finansial. Tampilan gradasi memberikan kesan futuristik dan berbasis teknologi, sejalan dengan konsep aplikasi digital. Sementara itu, tulisan “ESTD 2026” mencerminkan awal berdirinya sebagai simbol komitmen untuk terus berkembang.
+                            Logo <strong>Bicazz</strong> merepresentasikan identitas perusahaan sebagai platform keuangan yang modern, inovatif, dan terpercaya. Inisial "BZ" menegaskan nama Bicazz secara kuat dan mudah dikenali, sekaligus mencerminkan profesionalisme. Warna oranye melambangkan semangat dan kreativitas, sedangkan coklat kemerahan menunjukkan stabilitas dan kepercayaan dalam pengelolaan keuangan. Elemen bintang emas melambangkan harapan dan pencapaian, menggambarkan peran Bicazz dalam membantu pengguna meraih tujuan finansial. Tampilan gradasi memberikan kesan futuristik dan berbasis teknologi, sejalan dengan konsep aplikasi digital. Sementara itu, tulisan "ESTD 2026" mencerminkan awal berdirinya sebagai simbol komitmen untuk terus berkembang.Logo Bicazz merepresentasikan identitas perusahaan sebagai platform keuangan yang modern, inovatif, dan terpercaya. Inisial "BZ" menegaskan nama Bicazz secara kuat dan mudah dikenali, sekaligus mencerminkan profesionalisme. Warna oranye melambangkan semangat dan kreativitas, sedangkan coklat kemerahan menunjukkan stabilitas dan kepercayaan dalam pengelolaan keuangan. Elemen bintang emas melambangkan harapan dan pencapaian, menggambarkan peran Bicazz dalam membantu pengguna meraih tujuan finansial. Tampilan gradasi memberikan kesan futuristik dan berbasis teknologi, sejalan dengan konsep aplikasi digital. Sementara itu, tulisan "ESTD 2026" mencerminkan awal berdirinya sebagai simbol komitmen untuk terus berkembang.
                         </p>
                     </div>
                 </div>
@@ -349,6 +523,294 @@
         <p class="text-xs mt-2">Bicazz &copy; 2026 - Financial Management Solution</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // ==========================================
+        // NAVIGATION & SECTION MANAGEMENT
+        // ==========================================
+
+        function showMainSection(id) {
+            document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden-section'));
+            document.getElementById(`${id}-section`).classList.remove('hidden-section');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            
+            // Re-render chart if navigating back to product and Kas is active
+            if(id === 'product' && currentSwipeIndex === 0) {
+                setTimeout(renderChart, 100);
+            }
+        }
+
+
+        // ==========================================
+        // SWIPE CARD LOGIC
+        // ==========================================
+
+        let currentSwipeIndex = 0;
+
+        function swipeTo(index) {
+            currentSwipeIndex = index;
+            
+            // UI Button Updates
+            document.querySelectorAll('.futuristic-tab').forEach((b, i) => {
+                b.classList.toggle('active', i === index);
+            });
+
+            // Move Track
+            const track = document.getElementById('product-track');
+            track.style.transform = `translateX(-${index * 33.333}%)`;
+
+            // If index is 0 (Kas), ensure chart is sized correctly after transition
+            if(index === 0) {
+                setTimeout(renderChart, 500); 
+            }
+        }
+
+
+        // ==========================================
+        // KAS (CASH FLOW) LOGIC
+        // ==========================================
+
+        let currentBalance = 0;
+        let totalIncome = 0;
+        let totalExpense = 0;
+        let transactions = [];
+        let transType = 'income'; 
+        let chart;
+
+        function setTransType(type) {
+            transType = type;
+            document.getElementById('type-inc').classList.toggle('active', type === 'income');
+            document.getElementById('type-exp').classList.toggle('active', type === 'expense');
+            
+            const btn = document.getElementById('btn-submit-trans');
+            if(type === 'income') {
+                btn.innerText = 'Catat Pemasukan';
+                btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                btn.style.boxShadow = '0 5px 15px rgba(16,185,129,0.4)';
+            } else {
+                btn.innerText = 'Catat Pengeluaran';
+                btn.style.background = 'linear-gradient(135deg, #f87171, #ef4444)';
+                btn.style.boxShadow = '0 5px 15px rgba(239,68,68,0.4)';
+            }
+        }
+
+        function processTransaction() {
+            const amount = parseFloat(document.getElementById('trans-amount').value);
+            const label = document.getElementById('trans-label').value || (transType === 'income' ? 'Pemasukan' : 'Pengeluaran');
+            const cat = document.getElementById('trans-category').value;
+
+            if (isNaN(amount) || amount <= 0) return;
+
+            if (transType === 'income') {
+                totalIncome += amount;
+                currentBalance += amount;
+            } else {
+                totalExpense += amount;
+                currentBalance -= amount;
+            }
+
+            transactions.unshift({
+                id: Date.now(),
+                type: transType,
+                amount: amount,
+                label: label,
+                category: cat,
+                date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            });
+
+            updateKasUI();
+            renderChart();
+            
+            document.getElementById('trans-amount').value = '';
+            document.getElementById('trans-label').value = '';
+        }
+
+        function updateKasUI() {
+            document.getElementById('total-income').innerText = `Rp ${totalIncome.toLocaleString()}`;
+            document.getElementById('total-expense').innerText = `Rp ${totalExpense.toLocaleString()}`;
+            document.getElementById('current-balance').innerText = `Rp ${currentBalance.toLocaleString()}`;
+            
+            const list = document.getElementById('transaction-list');
+            if(transactions.length === 0) return;
+
+            list.innerHTML = transactions.map(t => `
+                <div class="flex justify-between items-center bg-black/10 hover:bg-black/20 transition p-3 rounded-xl border-l-4 ${t.type === 'income' ? 'border-emerald-500' : 'border-red-500'}">
+                    <div class="overflow-hidden">
+                        <p class="font-bold text-sm truncate">${t.label}</p>
+                        <p class="text-xs opacity-60">${t.date} • ${t.category}</p>
+                    </div>
+                    <p class="font-black text-sm whitespace-nowrap ml-2 ${t.type === 'income' ? 'text-emerald-500' : 'text-red-500'}">
+                        ${t.type === 'income' ? '+' : '-'}Rp ${t.amount.toLocaleString()}
+                    </p>
+                </div>
+            `).join('');
+        }
+
+        function renderChart() {
+            const canvas = document.getElementById('financeChart');
+            const noData = document.getElementById('no-chart-data');
+
+            // Prevent rendering if not on Kas tab to avoid zero-width canvas issues
+            if (currentSwipeIndex !== 0) return;
+
+            if (transactions.length === 0) {
+                canvas.classList.add('hidden');
+                noData.classList.remove('hidden');
+                return;
+            }
+
+            canvas.classList.remove('hidden');
+            noData.classList.add('hidden');
+
+            const ctx = canvas.getContext('2d');
+            const labels = [...transactions].reverse().map(t => t.date);
+            const dataPoints = [];
+            let tempBal = 0;
+            [...transactions].reverse().forEach(t => {
+                tempBal += (t.type === 'income' ? t.amount : -t.amount);
+                dataPoints.push(tempBal);
+            });
+
+            if (chart) chart.destroy();
+
+            // Gradient fill for chart
+            let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(239, 68, 68, 0.5)');
+            gradient.addColorStop(1, 'rgba(239, 68, 68, 0.0)');
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Saldo',
+                        data: dataPoints,
+                        borderColor: '#ef4444',
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#ef4444',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { 
+                        x: { display: false }, 
+                        y: { 
+                            beginAtZero: false,
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        } 
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+
+        // ==========================================
+        // TARGET TABUNGAN LOGIC
+        // ==========================================
+
+        let goalAmount = 0;
+        let currentSaved = 0;
+
+        function setSavingsTarget() {
+            const name = document.getElementById('target-name').value;
+            const total = parseFloat(document.getElementById('target-total').value);
+
+            if (!name || isNaN(total)) return;
+
+            goalAmount = total;
+            currentSaved = 0;
+            
+            document.getElementById('display-target-name').innerText = name;
+            document.getElementById('savings-goal').innerText = `Rp ${total.toLocaleString()}`;
+            document.getElementById('savings-current').innerText = `Rp 0`;
+            document.getElementById('savings-progress-bar').style.width = '0%';
+            
+            const card = document.getElementById('active-target-card');
+            card.classList.remove('opacity-50', 'pointer-events-none');
+        }
+
+        function addSavings() {
+            const amt = parseFloat(document.getElementById('add-savings').value);
+            if (isNaN(amt) || amt <= 0 || goalAmount === 0) return;
+
+            currentSaved += amt;
+            if (currentSaved > goalAmount) currentSaved = goalAmount;
+
+            const progress = (currentSaved / goalAmount) * 100;
+            document.getElementById('savings-progress-bar').style.width = `${progress}%`;
+            document.getElementById('savings-current').innerText = `Rp ${currentSaved.toLocaleString()}`;
+
+            if(currentSaved >= goalAmount) {
+                setTimeout(() => alert("🎉 Target tabunganmu telah tercapai! Saatnya mewujudkan impianmu!"), 300);
+            }
+            document.getElementById('add-savings').value = '';
+        }
+
+
+        // ==========================================
+        // SPLIT BILL LOGIC
+        // ==========================================
+
+        function calculateSplitBill() {
+            const bill = parseFloat(document.getElementById('sb-bill').value);
+            const people = parseInt(document.getElementById('sb-people').value);
+            const tax = parseFloat(document.getElementById('sb-tax').value) || 0;
+            const service = parseFloat(document.getElementById('sb-service').value) || 0;
+            const discount = parseFloat(document.getElementById('sb-discount').value) || 0;
+
+            if (isNaN(bill) || isNaN(people) || people <= 0) return;
+
+            const afterDiscount = bill - discount;
+            const finalTotal = afterDiscount + (afterDiscount * (tax / 100)) + (afterDiscount * (service / 100));
+            const perPerson = Math.ceil(finalTotal / people);
+
+            const resultCard = document.getElementById('sb-result');
+            resultCard.classList.remove('scale-95', 'opacity-50');
+            resultCard.classList.add('scale-100', 'opacity-100');
+
+            document.getElementById('sb-total-person').innerText = `Rp ${perPerson.toLocaleString()}`;
+            document.getElementById('sb-summary-total').innerText = `Total Bill: Rp ${finalTotal.toLocaleString()}`;
+        }
+
+        function resetSplitBill() {
+            document.querySelectorAll('#sb-bill, #sb-discount, #sb-tax, #sb-service').forEach(i => i.value = '');
+            document.getElementById('sb-people').value = 1;
+            
+            const resultCard = document.getElementById('sb-result');
+            resultCard.classList.add('scale-95', 'opacity-50');
+            resultCard.classList.remove('scale-100', 'opacity-100');
+            
+            document.getElementById('sb-total-person').innerText = `Rp 0`;
+            document.getElementById('sb-summary-total').innerText = `Total: Rp 0`;
+        }
+
+
+        // ==========================================
+        // THEME MANAGEMENT
+        // ==========================================
+
+        function toggleTheme() {
+            const body = document.getElementById('app-body');
+            const isDark = body.classList.contains('theme-dark');
+            body.classList.toggle('theme-light', isDark);
+            body.classList.toggle('theme-dark', !isDark);
+            
+            document.getElementById('theme-icon').innerHTML = isDark ? 
+                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />' : 
+                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+                
+            // Update chart colors if chart exists
+            if(chart && currentSwipeIndex === 0) {
+                renderChart();
+            }
+        }
+    </script>
 </body>
 </html>
