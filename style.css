@@ -1,0 +1,172 @@
+:root {
+    --bg-top-light: #FAF7EB;
+    --bg-bottom-light: #EB975E;
+    --bg-top-dark: #AB4F41;
+    --bg-bottom-dark: #5D1F1E;
+    --soft-rounded: 2rem;
+}
+
+body {
+    transition: background 0.5s ease, color 0.3s ease;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.theme-light {
+    background: linear-gradient(to bottom, var(--bg-top-light), var(--bg-bottom-light));
+    color: #444;
+}
+
+.theme-dark {
+    background: linear-gradient(to bottom, var(--bg-top-dark), var(--bg-bottom-dark));
+    color: #fff;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--soft-rounded);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.theme-dark .glass-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Futuristic & Glowing Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #f87171, #ef4444);
+    color: white;
+    border-radius: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+}
+
+/* Swipe Card Concept */
+.swipe-viewport {
+    overflow: hidden;
+    width: 100%;
+    border-radius: var(--soft-rounded);
+}
+
+.swipe-track {
+    display: flex;
+    width: 300%; /* 3 sections */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.swipe-item {
+    width: 33.333%;
+    padding: 1rem;
+    flex-shrink: 0;
+}
+
+/* Modern Tabs */
+.futuristic-tab {
+    position: relative;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+    color: inherit;
+    border: 1px solid transparent;
+}
+
+.futuristic-tab.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: #ef4444;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.theme-dark .futuristic-tab.active {
+    background: #2a0a0a;
+    color: #ff8a8a;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    border: 1px solid rgba(239, 68, 68, 0.8);
+}
+
+.type-toggle {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    border-radius: 2rem;
+    display: inline-flex;
+    gap: 0.5rem;
+}
+
+.type-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.type-btn.active {
+    background: linear-gradient(135deg, #f87171, #ef4444);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hidden-section { display: none; }
+
+/* Official Logo Styling */
+.official-logo {
+    background: linear-gradient(135deg, #ff0000, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Arial Black', Impact, sans-serif;
+    font-style: italic;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+}
+
+.logo-badge {
+    background: linear-gradient(135deg, #ff0000, #990000);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(239, 68, 68, 0.5);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(239, 68, 68, 0.8);
+}

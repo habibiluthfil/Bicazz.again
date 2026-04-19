@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bicazz - The Incredibles Financial Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-light" id="app-body">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 p-4">
+        <div class="max-w-7xl mx-auto glass-card px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="assets/Bicazz-Logo.jpeg" alt="Logo Bicazz" class="w-12 h-12 rounded-full object-cover">
+                <span class="text-2xl font-black tracking-tight official-logo">THE INCREDIBLES</span>
+            </div>
+            <div class="flex items-center gap-4 lg:gap-6 font-semibold text-sm lg:text-base">
+                <span class="cursor-pointer hover:text-red-600 transition" onclick="showMainSection('home')">Home</span>
+                <span class="cursor-pointer hover:text-red-600 transition" onclick="showMainSection('deskripsi')">Deskripsi Produk</span>
+                <span class="cursor-pointer hover:text-red-600 transition" onclick="showMainSection('design')">Dokumentasi</span>
+                <span class="bg-gradient-to-r from-red-500 to-orange-500 text-white px-5 py-2 rounded-2xl shadow-lg cursor-pointer hover:scale-105 transition" onclick="showMainSection('product')">Product</span>
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-black/10 transition ml-2">
+                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto p-4 flex-grow w-full overflow-hidden">
+        
+        <!-- HOME PAGE (Logo & Canva) -->
+        <section id="home-section" class="fade-in space-y-12 py-10">
+            <div class="text-center space-y-6">
+                <!-- Logo & Explanation -->
+                <div class="flex flex-col items-center justify-center space-y-4 mb-10">
+                    <img src="assets/Bicazz-Logo.jpeg" alt="Logo Bicazz" class="w-40 h-40 rounded-full object-cover border-4 border-yellow-400 shadow-[0_0_30px_rgba(255,0,0,0.6)]">
+                    <h1 class="text-4xl font-black tracking-widest uppercase mt-4">Bicazz</h1>
+                    <p class="text-lg opacity-80">The Incredibles Financial Tracker</p>
+
+                    <div class="max-w-4xl mx-auto glass-card p-6 text-left mt-6 relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 w-32 h-32 bg-red-500/20 rounded-full blur-2xl"></div>
+                        <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+                            Makna Logo Bicazz
+                        </h3>
+                        <p class="opacity-90 leading-relaxed text-sm">
+                            Logo <strong>Bicazz</strong> merepresentasikan identitas perusahaan sebagai platform keuangan yang modern, inovatif, dan terpercaya. Inisial “BZ” menegaskan nama Bicazz secara kuat dan mudah dikenali, sekaligus mencerminkan profesionalisme. Warna oranye melambangkan semangat dan kreativitas, sedangkan coklat kemerahan menunjukkan stabilitas dan kepercayaan dalam pengelolaan keuangan. Elemen bintang emas melambangkan harapan dan pencapaian, menggambarkan peran Bicazz dalam membantu pengguna meraih tujuan finansial. Tampilan gradasi memberikan kesan futuristik dan berbasis teknologi, sejalan dengan konsep aplikasi digital. Sementara itu, tulisan “ESTD 2026” mencerminkan awal berdirinya sebagai simbol komitmen untuk terus berkembang.Logo Bicazz merepresentasikan identitas perusahaan sebagai platform keuangan yang modern, inovatif, dan terpercaya. Inisial “BZ” menegaskan nama Bicazz secara kuat dan mudah dikenali, sekaligus mencerminkan profesionalisme. Warna oranye melambangkan semangat dan kreativitas, sedangkan coklat kemerahan menunjukkan stabilitas dan kepercayaan dalam pengelolaan keuangan. Elemen bintang emas melambangkan harapan dan pencapaian, menggambarkan peran Bicazz dalam membantu pengguna meraih tujuan finansial. Tampilan gradasi memberikan kesan futuristik dan berbasis teknologi, sejalan dengan konsep aplikasi digital. Sementara itu, tulisan “ESTD 2026” mencerminkan awal berdirinya sebagai simbol komitmen untuk terus berkembang.
+                        </p>
+                    </div>
+                </div>
+
+                <hr class="border-white/20 my-10">
+
+                <!-- Canva Embed (Moved from Design Page) -->
+                <div>
+                    <h2 class="text-4xl font-black mb-4 uppercase italic">The Incredibels Team</h2>
+                    <p class="mb-8 opacity-80">Lihatlah Team incredibels kami di canva ini</p>
+                    <div class="relative w-full max-w-5xl mx-auto overflow-hidden pt-[56.25%] rounded-3xl shadow-2xl mb-8 border-4 border-white/30">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.canva.com/design/DAHCHi8XlSo/CP4UE-iXJJZKXCnEhSPtMw/view?embed" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESKRIPSI PRODUK PAGE (Moved from old Home Page) -->
+        <section id="deskripsi-section" class="hidden-section fade-in space-y-12 py-10">
+            <div class="text-center space-y-4">
+                <h2 class="text-5xl font-black italic uppercase text-red-600 drop-shadow-lg">Tentang Bicazz</h2>
+                <p class="text-xl max-w-4xl mx-auto leading-relaxed font-medium opacity-90">
+                    Bicazz adalah aplikasi yang berkaitan dengan keuangan. Aplikasi ini dapat membantu pengguna dalam alur keluar masuknya kas (uang) pengguna dengan fitur pencatatan, target tabungan dan split bill. 
+                </p>
+                <p class="text-lg max-w-4xl mx-auto opacity-80 italic glass-card p-6">
+                    "Di tengah meningkatnya gaya konsumsi dan gaya hidup digital, banyak orang — terutama generasi muda mengalami kesulitan mengatur keuangan. Bicazz hadir sebagai penolong setia Anda."
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="glass-card p-8 border-l-8 border-red-500 hover:scale-105 transition-transform duration-300">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-3">❓ Kenapa Bicazz dibuat?</h2>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-center gap-3">🔴 Banyak pelajar tidak mencatat keuangan secara rutin</li>
+                        <li class="flex items-center gap-3">🔴 Sulit menyisihkan uang untuk menabung</li>
+                        <li class="flex items-center gap-3">🔴 Sering bingung menghitung rincian saat makan bersama</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-8 border-l-8 border-yellow-500 hover:scale-105 transition-transform duration-300">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-3">⭐ Kelebihan Kami</h2>
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex items-center gap-3">🟢 Antarmuka yang intuitif dan mudah digunakan</li>
+                        <li class="flex items-center gap-3">🟢 Semua fitur finansial dalam satu aplikasi praktis</li>
+                        <li class="flex items-center gap-3">🟢 Visualisasi data dengan grafik yang interaktif</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESIGN / DOKUMENTASI PAGE (New Content) -->
+        <section id="design-section" class="hidden-section fade-in py-10">
+            <div class="max-w-5xl mx-auto space-y-10">
+                <div class="text-center">
+                    <h2 class="text-4xl font-black mb-4 uppercase italic">Dokumentasi Proses</h2>
+                    <p class="opacity-80 text-lg">Perjalanan Kelompok THE-lNCREDIBLES dalam membangun Bicazz dari nol.</p>
+                </div>
+
+                <div class="relative border-l-4 border-red-500 pl-8 space-y-12 ml-4">
+                    <!-- Timeline Item 1 -->
+                    <div class="relative">
+                        <div class="absolute -left-[42px] top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-red-600 shadow-[0_0_10px_red]"></div>
+                        <h3 class="text-2xl font-bold mb-2">1. Tahap Ideasi & Brainstorming</h3>
+                        <div class="glass-card p-6">
+                            <p class="opacity-80">Kami menganalisis masalah umum mahasiswa: gaya hidup konsumtif dan kesulitan menabung. Dari sini, tercetus ide "Bicazz" (Biaya & Kas), terinspirasi dari kebutuhan akan "pahlawan super" keuangan (The Incredibles).</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="relative">
+                        <div class="absolute -left-[42px] top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-red-600 shadow-[0_0_10px_red]"></div>
+                        <h3 class="text-2xl font-bold mb-2">2. Desain UI/UX (Prototyping)</h3>
+                        <div class="glass-card p-6">
+                            <p class="opacity-80">Membuat wireframe dan desain awal menggunakan Canva. Memilih palet warna khas Incredibles (Merah, Oranye, Kuning, Hitam) dan gaya *soft rounded* agar aplikasi terasa ramah dan tidak kaku.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 3 -->
+                    <div class="relative">
+                        <div class="absolute -left-[42px] top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-red-600 shadow-[0_0_10px_red]"></div>
+                        <h3 class="text-2xl font-bold mb-2">3. Pengembangan (Coding)</h3>
+                        <div class="glass-card p-6">
+                            <p class="opacity-80">Mengimplementasikan desain ke dalam kode menggunakan HTML, CSS (Tailwind CSS untuk *styling* cepat dan responsif), serta JavaScript untuk logika aplikasi (Kalkulasi Kas, Target Tabungan, Split Bill).</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 4 -->
+                    <div class="relative">
+                        <div class="absolute -left-[42px] top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-red-600 shadow-[0_0_10px_red]"></div>
+                        <h3 class="text-2xl font-bold mb-2">4. Pengujian & Penyempurnaan (Testing)</h3>
+                        <div class="glass-card p-6">
+                            <p class="opacity-80">Melakukan *bug fixing*, memastikan grafik dari `Chart.js` merender dengan benar, dan merombak UI produk menjadi sistem *swipe card* yang modern dan futuristik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT PAGE (Redesigned Swipe Card Concept) -->
+        <section id="product-section" class="hidden-section fade-in space-y-8 py-6">
+            
+            <!-- Futuristic Tab Navigation -->
+            <div class="flex justify-center mb-6">
+                <div class="glass-card p-2 flex gap-2 rounded-full backdrop-blur-xl bg-white/10 shadow-[0_0_20px_rgba(0,0,0,0.1)]">
+                    <button class="futuristic-tab active" id="tab-0" onclick="swipeTo(0)">
+                        <span class="mr-2">📒</span> Kas
+                    </button>
+                    <button class="futuristic-tab" id="tab-1" onclick="swipeTo(1)">
+                        <span class="mr-2">🎯</span> Target
+                    </button>
+                    <button class="futuristic-tab" id="tab-2" onclick="swipeTo(2)">
+                        <span class="mr-2">⚖️</span> Split
+                    </button>
+                </div>
+            </div>
+
+            <!-- Horizontal Swipe Viewport -->
+            <div class="swipe-viewport glass-card border-none bg-white/5 shadow-[0_15px_50px_rgba(0,0,0,0.15)] relative overflow-hidden">
+                <!-- Decorative Glow Backgrounds -->
+                <div class="absolute -top-32 -left-32 w-64 h-64 bg-red-500/20 rounded-full blur-[80px] pointer-events-none"></div>
+                <div class="absolute -bottom-32 -right-32 w-64 h-64 bg-yellow-500/20 rounded-full blur-[80px] pointer-events-none"></div>
+
+                <div class="swipe-track" id="product-track">
+                    
+                    <!-- PANEL 1: PENCATATAN KAS -->
+                    <div class="swipe-item relative z-10">
+                        <div class="text-center mb-8">
+                            <h2 class="text-3xl font-black italic text-red-500 drop-shadow-md">Pencatatan Kas</h2>
+                            <p class="opacity-70 text-sm">Monitor aliran dana dengan visualisasi modern.</p>
+                        </div>
+
+                        <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                            <div class="glass-card p-6 bg-gradient-to-br from-emerald-500/20 to-transparent text-center border-t-4 border-emerald-500">
+                                <p class="text-xs uppercase font-bold opacity-70 tracking-wider">Pemasukan</p>
+                                <h3 id="total-income" class="text-3xl font-black text-emerald-600 mt-2">Rp 0</h3>
+                            </div>
+                            <div class="glass-card p-6 bg-gradient-to-br from-red-500/20 to-transparent text-center border-t-4 border-red-500">
+                                <p class="text-xs uppercase font-bold opacity-70 tracking-wider">Pengeluaran</p>
+                                <h3 id="total-expense" class="text-3xl font-black text-red-600 mt-2">Rp 0</h3>
+                            </div>
+                            <div class="glass-card p-6 bg-gradient-to-br from-blue-500/20 to-transparent text-center border-t-4 border-blue-500">
+                                <p class="text-xs uppercase font-bold opacity-70 tracking-wider">Saldo Saat Ini</p>
+                                <h3 id="current-balance" class="text-3xl font-black text-blue-600 mt-2">Rp 0</h3>
+                            </div>
+                        </div>
+
+                        <div class="grid lg:grid-cols-12 gap-8">
+                            <div class="lg:col-span-4 space-y-6">
+                                <div class="glass-card p-6 backdrop-blur-2xl">
+                                    <div class="type-toggle w-full justify-center mb-6 bg-black/10">
+                                        <div class="type-btn active text-sm" id="type-inc" onclick="setTransType('income')">Pemasukan</div>
+                                        <div class="type-btn text-sm" id="type-exp" onclick="setTransType('expense')">Pengeluaran</div>
+                                    </div>
+                                    <div class="space-y-4">
+                                        <input id="trans-amount" type="number" placeholder="Nominal (Rp)" class="w-full p-4 rounded-xl bg-white/40 border border-white/20 outline-none focus:ring-2 ring-red-500 transition-all text-black">
+                                        <select id="trans-category" class="w-full p-4 rounded-xl bg-white/40 border border-white/20 outline-none text-black">
+                                            <option value="Kebutuhan">Kebutuhan</option>
+                                            <option value="Keinginan">Keinginan</option>
+                                            <option value="Tabungan">Tabungan</option>
+                                            <option value="Custom">Lainnya...</option>
+                                        </select>
+                                        <input id="trans-label" type="text" placeholder="Keterangan (Opsional)" class="w-full p-4 rounded-xl bg-white/40 border border-white/20 outline-none text-black">
+                                        <button onclick="processTransaction()" id="btn-submit-trans" class="w-full btn-primary py-4 text-lg mt-2 shadow-[0_5px_15px_rgba(16,185,129,0.4)]" style="background: linear-gradient(135deg, #10b981, #059669);">Catat Transaksi</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-8 space-y-6 flex flex-col">
+                                <div class="glass-card p-6 flex-grow">
+                                    <div class="h-64 flex items-center justify-center relative w-full">
+                                        <canvas id="financeChart" class="hidden absolute inset-0 w-full h-full"></canvas>
+                                        <div id="no-chart-data" class="text-center opacity-50 italic">
+                                            <div class="text-4xl mb-2">📊</div>
+                                            Belum ada data untuk dirender
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="glass-card p-4 overflow-hidden h-40">
+                                    <h3 class="text-sm font-bold opacity-70 uppercase tracking-wider mb-2 px-2">Riwayat Transaksi</h3>
+                                    <div id="transaction-list" class="space-y-2 h-full overflow-y-auto pr-2 custom-scrollbar">
+                                        <div class="text-center opacity-40 text-sm mt-8 italic">Riwayat kosong.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 2: TARGET TABUNGAN -->
+                    <div class="swipe-item relative z-10 flex items-center justify-center p-8">
+                        <div class="w-full max-w-3xl glass-card p-10 backdrop-blur-2xl border-white/30 relative overflow-hidden">
+                            <!-- Target Glow -->
+                            <div class="absolute -top-20 -right-20 w-40 h-40 bg-yellow-400/30 rounded-full blur-3xl pointer-events-none"></div>
+
+                            <div class="text-center mb-10">
+                                <h2 class="text-4xl font-black italic text-yellow-600 drop-shadow-md">Target Tabungan</h2>
+                                <p class="opacity-70 mt-2">Simulasikan dan wujudkan barang impianmu.</p>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div class="space-y-5">
+                                    <div>
+                                        <label class="text-xs uppercase font-bold opacity-60 ml-1">Nama Barang</label>
+                                        <input id="target-name" type="text" placeholder="Cth: Laptop Baru" class="w-full mt-1 p-4 rounded-xl bg-white/40 border border-white/20 outline-none text-black">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs uppercase font-bold opacity-60 ml-1">Target Nominal</label>
+                                        <input id="target-total" type="number" placeholder="Rp 0" class="w-full mt-1 p-4 rounded-xl bg-white/40 border border-white/20 outline-none text-black">
+                                    </div>
+                                    <button onclick="setSavingsTarget()" class="w-full btn-primary bg-yellow-600 hover:bg-yellow-700 shadow-[0_5px_15px_rgba(202,138,4,0.4)] py-4">Tetapkan Target Baru</button>
+                                </div>
+                                
+                                <div id="active-target-card" class="glass-card bg-black/10 p-8 border-2 border-yellow-500/40 opacity-50 pointer-events-none transition-all duration-300">
+                                    <h4 id="display-target-name" class="font-bold text-xl text-center mb-4 truncate">Belum ada target</h4>
+                                    
+                                    <div class="relative w-full bg-black/20 rounded-full h-8 overflow-hidden flex border border-white/10 shadow-inner">
+                                        <div id="savings-progress-bar" class="bg-gradient-to-r from-yellow-400 to-orange-500 h-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+                                    </div>
+                                    
+                                    <div class="flex justify-between font-bold text-xs uppercase opacity-70 mt-3">
+                                        <span id="savings-current">Rp 0</span>
+                                        <span id="savings-goal">Rp 0</span>
+                                    </div>
+                                    
+                                    <div class="flex gap-2 pt-6">
+                                        <input id="add-savings" type="number" placeholder="Input tabungan (Rp)" class="w-full p-3 rounded-xl bg-white/40 border border-white/20 outline-none text-black">
+                                        <button onclick="addSavings()" class="btn-primary" style="background: #10b981;">Nabong!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 3: SPLIT BILL -->
+                    <div class="swipe-item relative z-10 flex justify-center p-8">
+                        <div class="w-full max-w-4xl glass-card p-10 backdrop-blur-2xl relative overflow-hidden">
+                             <!-- Split Glow -->
+                             <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-orange-500/30 rounded-full blur-3xl pointer-events-none"></div>
+
+                            <div class="text-center mb-10">
+                                <h2 class="text-4xl font-black italic text-orange-500 drop-shadow-md">Split Bill Otomatis</h2>
+                                <p class="opacity-70 mt-2">Makan bersama teman? Hitung patungan seadil mungkin.</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-12">
+                                <div class="space-y-5">
+                                    <div class="glass-card p-5 bg-white/10 space-y-4 border border-white/20">
+                                        <div>
+                                            <label class="text-xs font-bold uppercase opacity-60 ml-1">Total Tagihan (Rp)</label>
+                                            <input id="sb-bill" type="number" class="w-full mt-1 p-4 rounded-xl bg-white/40 outline-none text-black text-lg font-bold">
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="text-xs font-bold uppercase opacity-60 ml-1">Jumlah Orang</label>
+                                                <input id="sb-people" type="number" value="1" min="1" class="w-full mt-1 p-4 rounded-xl bg-white/40 outline-none text-black text-center font-bold">
+                                            </div>
+                                            <div>
+                                                <label class="text-xs font-bold uppercase opacity-60 ml-1">Diskon (Rp)</label>
+                                                <input id="sb-discount" type="number" value="0" class="w-full mt-1 p-4 rounded-xl bg-white/40 outline-none text-black">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="text-xs font-bold uppercase opacity-60 ml-1">Pajak (%)</label>
+                                                <input id="sb-tax" type="number" value="0" class="w-full mt-1 p-4 rounded-xl bg-white/40 outline-none text-black text-center">
+                                            </div>
+                                            <div>
+                                                <label class="text-xs font-bold uppercase opacity-60 ml-1">Service (%)</label>
+                                                <input id="sb-service" type="number" value="0" class="w-full mt-1 p-4 rounded-xl bg-white/40 outline-none text-black text-center">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <button onclick="calculateSplitBill()" class="flex-grow btn-primary py-4 text-lg shadow-[0_5px_15px_rgba(249,115,22,0.4)]" style="background: linear-gradient(135deg, #f97316, #ea580c);">Hitung Patungan</button>
+                                        <button onclick="resetSplitBill()" class="px-6 py-4 rounded-xl bg-black/10 font-bold hover:bg-black/20 transition-all border border-white/20">Reset</button>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-center">
+                                    <div id="sb-result" class="w-full h-full glass-card bg-gradient-to-b from-orange-500/20 to-transparent p-8 flex flex-col justify-center items-center text-center space-y-4 border-2 border-orange-500/50 shadow-[0_0_30px_rgba(249,115,22,0.1)] transition-all transform scale-95 opacity-50">
+                                        <div class="text-5xl mb-2">💸</div>
+                                        <p class="font-bold opacity-60 uppercase tracking-widest text-sm">Per Orang Bayar</p>
+                                        <h3 id="sb-total-person" class="text-5xl font-black text-orange-600 drop-shadow-md">Rp 0</h3>
+                                        <hr class="w-1/2 border-orange-500/30 my-4">
+                                        <div class="text-sm italic opacity-70 space-y-1 bg-white/10 p-3 rounded-lg w-full">
+                                            <p id="sb-summary-total">Total: Rp 0</p>
+                                            <p class="text-xs">(Dibulatkan ke atas)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-8 text-center opacity-60 border-t border-white/10 mt-auto">
+        <p class="font-bold tracking-widest uppercase text-sm">Project Kelompok: THE incredibels </p>
+        <p class="text-xs mt-2">Bicazz &copy; 2026 - Financial Management Solution</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
